@@ -51,13 +51,16 @@ main {
 }
 
 .next {
-    bottom: 0;
-    left: 50%;
+    top: 50%;
+    left: 98%;
+    transform: translate(-50%, -50%);
 }
 
+
 .previous {
-    top: 0;
-    left: 50%;
+    top: 50%;
+    left: 2%;
+    transform: translate(-50%, -50%);
 }
 
 .next:hover,
@@ -70,6 +73,18 @@ main {
     padding: 16px;
 }
 
-.hidden {
-    visibility: hidden;
+.title-position {
+    position: absolute;
+    top: 78%;
+    left: 2%;
+    font-size: 21px;
+    color: white;
+    font-weight: bold;
+}
+
+.text-position {
+    position: absolute;
+    top: 89%;
+    left: 2%;
+    color:white;
 }

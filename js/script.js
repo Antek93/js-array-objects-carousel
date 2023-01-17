@@ -37,7 +37,7 @@ const images = [
     }
 ];
 
-// <------------------------------------INSERIMENTO DATI NELL'ARRAY--------------------------------------->
+// <------------------------------------CREARE IL CAROSELLO--------------------------------------->
 
 
 // Creare un carosello:
@@ -46,9 +46,14 @@ const images = [
 // Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico:
 // costruiamo il container e inseriamo l'immagine grande in modo da poter stilare lo slider.
 
+// <------------------------------------MANIPOLAZIONE DEL DOM--------------------------------------->
+
+
 // STEP 1. SELEZIONARE il CAROUSEL DELL'HTML
 
 const carous = document.querySelector('.carousel');
+
+// <---------------------CICLO FOR PER INSERIRE GLI ELEMENTI NEL DOM-------------------------------->
 
 // STEP 2. CREARE UN CICLO FOR PER INSERIRE PIU ELEMENTI DA INSERIRE NEL CAROUSEL
 
@@ -62,27 +67,29 @@ for (let i = 0; i < images.length; i++) { // a partire da 0 - fin quando i è mi
 
     carous.innerHTML += `<div class="slide">
                              <img src="${images[i].image}">
+                             <div class="title-position">
+                             ${images[i].title}
+                             </div>
+                             <div class="text-position">
+                             ${images[i].text}
+                             </div>
                          </div>`
 }
+
 
 
 // Milestone 1:
 // Ora rimuoviamo i contenuti statici e usiamo l'array di oggetti letterali per popolare dinamicamente il carosello.
 // Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 
+// <------------------------------------MANIPOLAZIONE DEL DOM--------------------------------------->
+
 // 5. SELEZIONARE TUTTI I DIV CON CLASSE SLIDE
 
 const allSlide = document.querySelectorAll('.slide')
 
-// querySelectorAll crea già da sé un ARRAY 
-// vedi in console: 
 
-console.log('allSlide', allSlide, typeof allSlide);
-
-
-// ADESSO PER AGGIUNGERE LA CLASSE CURRENT
-// ad ogni elemento dell'array
-// scorrendo con le frecce
+// <-----------------------CREAZIONE FRECCE DI SCORRIMENTO------------------------------------------>
 
 
 // Innazitutto creo due costanti per selezionare i due bottoni:
@@ -96,99 +103,86 @@ allSlide[0].classList.add('current') //current su CSS ha valore block
 
 // Determino una variabile iniziale per il valore 0
 
-let current = 0;
+let current = 0; // la classe current parte dalla picture in position 0
+
+
+// Milestone 2:
+
+// <------------------------------------CREZIONE EVENTO--------------------------------------->
+
+
+// Aggiungere il ciclo infinito del carosello. Ovvero se l'immagine attiva è la prima e l'utente clicca la freccia verso destra,
+// l'immagine che deve attivarsi sarà l'ultima e viceversa per l'ultima immagine se l'utente clicca la freccia verso sinistra.
 
 // creo un evento
-
 
 nextArrow.addEventListener('click', // quando clicco su nextArrow:
 
         function() {
-
-        // Verifica se event funziona:
-            console.log('cliccato su Next')
          
-        // rimuovo current dalla slide 0    
+        // rimuovo current dalla slide corrente  
 
         allSlide[current].classList.remove('current');
 
-        // modifico la variabile 0 con 0 +1
-
-        current = current + 1;
-
-        //aggiungo nuovamente current alla slide,
-
-        allSlide[current].classList.add('current');
-
-        // ARRIVATI ALL'ULTIMA SLIDE RIMUOVO IL TASTO NEXT
-        // se (slide corrente = all'ultima slide)
-        // lunghezza array = 5 (con zero compreso)
-        // 5 - 1 = slide 4 (l'ultima slide)
+        //se quando clicco sono sull'ultima slide:
 
         if (current == allSlide.length - 1) {
 
-        nextArrow.classList.add('hidden'); 
+        //torna alla slide 0
+
+            current = 0;
+    
+        //altrimenti:
+
+        } else {
+        
+        //Scorri sulla slide succesiva
+            current = current + 1;
 
         }
 
-        // Dopo la slide 0 rimuovo sempre hidden dal tasto PREVIOUS
+        //e infine, aggiungi la classe current alla slide
 
-        previousArrow.classList.remove('hidden');
-        
+        allSlide[current].classList.add('current');    
     }
 
 
 );
 
-previousArrow.addEventListener('click', // quando clicco su nextArrow:
+//Quando clicco su PREVIOUS arrow:
+
+previousArrow.addEventListener('click',
 
         function() {
-
-            // Verifica se event funziona:
-                console.log('cliccato su Next')
             
-            // rimuovo current dalla slide 0    
+            // rimuovo current dalla slide corrente  
 
             allSlide[current].classList.remove('current');
 
-            // modifico la variabile 0 con 0 - 1
+            // SE ci troviamo sull'ultima slide, torna alla slide 0
 
-            current = current - 1;
+            if (current == allSlide.length - 5) {
 
-            //aggiungo nuovamente current alla slide,
+                current = allSlide.length - 1            
+            }
+
+            //ALTRIMENTI:
+
+            else {
+            
+            // procedi alla slide precedente
+            
+                current = current -1;
+            } 
+
+            //e infine, aggiungi la classe current alla slide
 
             allSlide[current].classList.add('current');
 
-            // SE RITORNO ALLA PRIMA SLIDE RITORNA IL VALORE HIDDEN alla freccia previous
-            // se (slide corrente = alla prima slide)
-            // lunghezza array = 5 (con zero compreso)
-            // 5 - 5 = slide 0 (prima slide)
-
-
-            if (current == allSlide.length - 5) {
-
-                previousArrow.classList.add('hidden'); 
-        
-                
-            }
-
-            if (current == allSlide.length - 5) {
-
-                nextArrow.classList.remove('hidden'); 
-        
-                
-            } 
-
-        
         }
 
-         // Dopo la slide 0 rimuovo sempre hidden dal tasto PREVIOUS
-
 )
- 
 
-// Milestone 2:
-// Aggiungere il ciclo infinito del carosello. Ovvero se l'immagine attiva è la prima e l'utente clicca la freccia verso destra, l'immagine che deve attivarsi sarà l'ultima e viceversa per l'ultima immagine se l'utente clicca la freccia verso sinistra.
 
 // BONUS 1:
 // Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l'immagine corrispondente.
