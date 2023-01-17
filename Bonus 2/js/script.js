@@ -116,7 +116,7 @@ setInterval(function() {
 
         allSlide[current].classList.remove('current');
 
-        //se quando clicco sono sull'ultima slide:
+        //se sono sono sull'ultima slide:
 
         if (current == allSlide.length - 1) {
 
@@ -138,7 +138,7 @@ setInterval(function() {
         allSlide[current].classList.add('current');
 
 
-}, 10000)
+}, 3000)
 
 
 
