@@ -67,7 +67,6 @@ for (let i = 0; i < images.length; i++) { // a partire da 0 - fin quando i è mi
 
 
 // Milestone 1:
-
 // Ora rimuoviamo i contenuti statici e usiamo l'array di oggetti letterali per popolare dinamicamente il carosello.
 // Al click dell'utente sulle frecce verso sinistra o destra, l'immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
 
@@ -76,6 +75,9 @@ for (let i = 0; i < images.length; i++) { // a partire da 0 - fin quando i è mi
 const allSlide = document.querySelectorAll('.slide')
 
 // querySelectorAll crea già da sé un ARRAY 
+// vedi in console: 
+
+console.log('allSlide', allSlide, typeof allSlide);
 
 
 // ADESSO PER AGGIUNGERE LA CLASSE CURRENT
@@ -86,7 +88,7 @@ const allSlide = document.querySelectorAll('.slide')
 // Innazitutto creo due costanti per selezionare i due bottoni:
 
 const nextArrow = document.querySelector('.next');
-const previousArrow = document.querySelector('.previous');
+const previousArrow = document.querySelector('.previous')
 
 // Aggiungo la classe current al valore 0 (prima immagine)
 
