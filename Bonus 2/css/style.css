@@ -39,39 +39,6 @@ main {
     display: block;
 }
 
-.buttons {
-    position: absolute;
-    color: black;
-    background-color: rgba(255, 255, 255, 0.125);
-    height: 50px;
-    width: 50px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.next {
-    top: 50%;
-    left: 98%;
-    transform: translate(-50%, -50%);
-}
-
-
-.previous {
-    top: 50%;
-    left: 2%;
-    transform: translate(-50%, -50%);
-}
-
-.next:hover,
-.previous:hover {
-    background-color: rgba(255, 255, 255, 0.993);
-    cursor: pointer;
-}
-
-.fa-solid {
-    padding: 16px;
-}
 
 .title-position {
     position: absolute;

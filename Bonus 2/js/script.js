@@ -89,14 +89,6 @@ for (let i = 0; i < images.length; i++) { // a partire da 0 - fin quando i è mi
 const allSlide = document.querySelectorAll('.slide')
 
 
-// <-----------------------CREAZIONE FRECCE DI SCORRIMENTO------------------------------------------>
-
-
-// Innazitutto creo due costanti per selezionare i due bottoni:
-
-const nextArrow = document.querySelector('.next');
-const previousArrow = document.querySelector('.previous')
-
 // Aggiungo la classe current al valore 0 (prima immagine)
 
 allSlide[0].classList.add('current') //current su CSS ha valore block
@@ -108,17 +100,17 @@ let current = 0; // la classe current parte dalla picture in position 0
 
 // Milestone 2:
 
-// <------------------------------------CREZIONE EVENTO--------------------------------------->
+// <------------------------------------CREZIONE TIMER--------------------------------------->
 
 
 // Aggiungere il ciclo infinito del carosello. Ovvero se l'immagine attiva è la prima e l'utente clicca la freccia verso destra,
 // l'immagine che deve attivarsi sarà l'ultima e viceversa per l'ultima immagine se l'utente clicca la freccia verso sinistra.
 
-// creo un evento
+// BONUS 2:
+// Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l'immagine attiva dovrà cambiare alla successiva.
 
-nextArrow.addEventListener('click', // quando clicco su nextArrow:
 
-        function() {
+setInterval(function() {
          
         // rimuovo current dalla slide corrente  
 
@@ -143,53 +135,13 @@ nextArrow.addEventListener('click', // quando clicco su nextArrow:
 
         //e infine, aggiungi la classe current alla slide
 
-        allSlide[current].classList.add('current');    
-    }
+        allSlide[current].classList.add('current');
 
 
-);
-
-//Quando clicco su PREVIOUS arrow:
-
-previousArrow.addEventListener('click',
-
-        function() {
-            
-            // rimuovo current dalla slide corrente  
-
-            allSlide[current].classList.remove('current');
-
-            // SE ci troviamo sull'ultima slide, torna alla slide 0
-
-            if (current == allSlide.length - 5) {
-
-                current = allSlide.length - 1            
-            }
-
-            //ALTRIMENTI:
-
-            else {
-            
-            // procedi alla slide precedente
-            
-                current = current -1;
-            } 
-
-            //e infine, aggiungi la classe current alla slide
-
-            allSlide[current].classList.add('current');
-
-        }
-
-)
+}, 10000)
 
 
-// BONUS 1:
-// Aggiungere le thumbnails (sottoforma di miniatura) ed al click attivare l'immagine corrispondente.
+
 
 // BONUS 2:
 // Aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) l'immagine attiva dovrà cambiare alla successiva.
-
-// BONUS 3:
-// Aggiungere bottoni di start/stop e di inversione del meccanismo di autoplay.
-// Buon lavoro e buon divertimento! :faccia_leggermente_sorridente:
